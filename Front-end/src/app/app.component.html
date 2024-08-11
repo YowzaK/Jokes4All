@@ -1,0 +1,36 @@
+<nz-layout class="bg-slate-800">
+  <nz-header>
+    <ul nz-menu nzTheme="dark" nzMode="horizontal" class="bg-topbar">
+      <a nz-menu-item routerLink="">Jokes</a>
+      <a nz-menu-item routerLink="/submitJokes">Submit Jokes</a>
+      <ng-container *ngIf="isAuthenticated()">
+        <a nz-menu-item routerLink="/moderator">Moderate Jokes</a>
+      </ng-container>      
+      <a
+        class="float-right"
+        nz-menu-item
+        nz-dropdown
+        nzTrigger="click"
+        [nzDropdownMenu]="menu"
+      >
+        <span nz-icon nzType="user" nzTheme="outline"></span
+      ></a>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu>
+          <ng-container *ngIf="!isAuthenticated()" >
+          <a nz-menu-item routerLink="/login">Login</a>
+        </ng-container>
+          <ng-container *ngIf="isAuthenticated()" >
+            <a nz-menu-item (click)="logout()">logout</a>
+          </ng-container>
+        </ul>
+      </nz-dropdown-menu>
+    </ul>
+  </nz-header>
+  <nz-content>
+    <div class="inner-content">
+      <router-outlet></router-outlet>
+    </div>
+  </nz-content>
+</nz-layout>
+<ngx-ui-loader [hasProgressBar]=false ></ngx-ui-loader>

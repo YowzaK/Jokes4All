@@ -1,0 +1,22 @@
+<div class="flex flex-col justify-center items-center h-[calc(100vh-64px)]">
+  <div class="pb-10">
+    <a nz-dropdown [nzDropdownMenu]="menu" class="text-white">
+      {{selectedType}}
+      <span nz-icon nzType="down"></span>
+    </a>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item *ngFor="let type of types" (click)="getSelectedtype(type.types)">{{ type.types }}</li>
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+  <div class="pb-10 max-w-md">
+    <nz-card>
+      <p class="font-bold pb-2">{{ this.joke.types}}</p>
+      <p>{{ this.joke.joke }}</p>
+    </nz-card>
+  </div>
+  <button nz-button nzType="primary" (click)="getJokeFromType()">
+    Get Joke
+  </button>
+</div>

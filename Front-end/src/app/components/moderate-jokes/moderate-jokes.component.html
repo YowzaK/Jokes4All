@@ -1,0 +1,49 @@
+<div class="flex justify-center items-center h-[calc(100vh-64px)]">
+    <form
+      nz-form
+      [formGroup]="validateForm"
+      class="w-96 pt-10 pl-10 pr-10 pb-10 border-solid border-blue-600 border-2 rounded-sm"
+    >
+      <nz-form-item>
+        <a nz-dropdown [nzDropdownMenu]="menu" class="text-white">
+          {{typeOfJoke()}}
+          <span nz-icon nzType="down"></span>
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu nzSelectable>
+            <li nz-menu-item (click)="computing()">Computing Jokes</li>
+            <li nz-menu-item (click)="animal()">Animal Jokes</li>
+            <li nz-menu-item (click)="dadjokes()">Dad Jokes</li>
+          </ul>
+        </nz-dropdown-menu>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input the joke">
+          <textarea
+            class="w-full resize-none"
+            rows="4"
+            formControlName="joke"
+            [(ngModel)]="unJoke.joke"
+            nz-input
+          ></textarea>
+        </nz-form-control>
+      </nz-form-item>
+      <div class="flex flex-row ">
+        <button
+        nz-button
+        class="w-full mb-4 mr-4"
+        [nzType]="'primary'"
+        (click)="addToDeliverJokes()"
+      >Add to DeliverJokes</button><button
+      nz-button
+      class="w-full mb-4"
+      [nzType]="'primary'"
+      (click)="deleteJoke()"
+    >
+      Delete Joke
+    </button>
+      </div>
+      
+    </form>
+  </div>
+  
